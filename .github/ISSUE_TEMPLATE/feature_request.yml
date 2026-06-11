@@ -1,0 +1,96 @@
+name: "Feature request"
+description: "Propose a new public surface, behavior, or capability."
+title: "[feat] <one-line summary>"
+labels: ["enhancement", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for proposing a feature. Substantive proposals (new public exports, new telemetry event kinds, changes to the persisted StateSnapshot schema, CLI flags or subcommands, the AlertChannel / AlertEnricher / StateBackend interfaces, the sensitivity presets, or the drift state machine semantics) require maintainer discussion BEFORE implementation. Please file this issue first and wait for triage before opening a PR.
+
+        Read [SPEC.md](https://github.com/davccavalcante/behavioralai/blob/main/SPEC.md) and [TASK.md](https://github.com/davccavalcante/behavioralai/blob/main/TASK.md) before submitting. Many proposed features may already be on the roadmap or deliberately out of scope.
+
+  - type: dropdown
+    id: surface
+    attributes:
+      label: "Target surface"
+      description: "Which part of Behavioral AI should the feature live in?"
+      options:
+        - "core engine (src/core - createBehavioralAI, observe, lifecycle)"
+        - "stats / detectors (src/stats - z-score, exact binomial rate test, Page-Hinkley, JSD)"
+        - "fingerprint / features (src/fingerprint)"
+        - "drift state machine (src/drift - confirmation, recovery, forecasting)"
+        - "alerting governance (src/alerting - cooldown, severity, canary)"
+        - "new alert channel (src/channels)"
+        - "existing channel (Slack / Discord / Teams / Google Chat / Telegram / PagerDuty / Notion / Reddit / X / Sheets / Docs / webhook)"
+        - "email / SMTP (src/smtp)"
+        - "OTel mapping (src/otel - GenAI semantic conventions)"
+        - "integrations (src/integrations - bridges and enrichers)"
+        - "new state backend (src/state - Redis, SQLite, etc.)"
+        - "web / edge entries (src/web, src/edge)"
+        - "CLI (behavioralai inspect / simulate / serve / new subcommand)"
+        - "telemetry / new event kind"
+        - "types / public API"
+        - "docs / examples"
+        - "CI / tooling"
+        - "cross-cutting"
+    validations:
+      required: true
+
+  - type: textarea
+    id: motivation
+    attributes:
+      label: "Motivation"
+      description: "What problem does this feature solve? Who has the problem (library user, CLI user, SRE with agent SLOs, compliance officer, integrator, maintainer)? Why is the current surface insufficient?"
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: "Proposed surface"
+      description: "What would the public API look like? Include type signatures, CLI flag names, config schema, telemetry event shapes - whatever is concrete enough to review. Remember the constraints: observe() stays synchronous and I/O-free, channel failures can never crash the agent, the engine never sees prompt or completion text, and the core stays zero-runtime-dependency."
+      render: typescript
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: "Alternatives considered"
+      description: "Other shapes you considered and rejected (and why). 'I did not think of any' is not acceptable for non-trivial features."
+    validations:
+      required: true
+
+  - type: dropdown
+    id: semver
+    attributes:
+      label: "SemVer impact"
+      description: "Per SPEC.md §5.2."
+      options:
+        - "Patch - bug fix or internal refactor"
+        - "Minor - new optional export, new optional field, new telemetry event kind, new channel"
+        - "Major - breaking change (rename, remove, signature change, StateSnapshot schema change)"
+    validations:
+      required: true
+
+  - type: input
+    id: task_ref
+    attributes:
+      label: "TASK.md cross-reference"
+      description: "If this proposal advances or closes a TASK.md item, name the ID(s). Use 'N/A - new initiative' if novel."
+      placeholder: "F-2, Q-3, X-1, etc."
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: "Pre-submission checklist"
+      options:
+        - label: "I read [SPEC.md](https://github.com/davccavalcante/behavioralai/blob/main/SPEC.md) and [TASK.md](https://github.com/davccavalcante/behavioralai/blob/main/TASK.md)."
+          required: true
+        - label: "I searched existing issues and PRs for duplicates and prior art."
+          required: true
+        - label: "I understand substantive features need maintainer discussion before a PR opens (per [CONTRIBUTING §4.3](https://github.com/davccavalcante/behavioralai/blob/main/.github/CONTRIBUTING.md))."
+          required: true

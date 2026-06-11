@@ -1,0 +1,188 @@
+{
+  "name": "@takk/behavioralai",
+  "version": "1.0.0",
+  "description": "Behavioral AI: universal, zero-runtime-dependency behavioral observability for production agents. Learns a per-agent behavioral fingerprint, detects drift in real time before any visible failure, attributes the cause, and forecasts the trend. Built for Massive Intelligence (IM) agents and non-human entities (NHE). OpenTelemetry GenAI spans as input. Alerts on Slack, Discord, PagerDuty, Microsoft Teams, Google Chat, Telegram, Notion, Google Sheets, Google Docs, X, Reddit, email (SMTP), or any custom webhook. Works in Node, Edge runtimes (Cloudflare Workers, Vercel Edge, Deno, Bun) and the browser.",
+  "keywords": [
+    "behavioral-observability",
+    "behavioral-fingerprinting",
+    "agent-observability",
+    "anomaly-detection",
+    "drift-detection",
+    "ai-observability",
+    "ai-agents",
+    "llm-observability",
+    "llm-monitoring",
+    "opentelemetry",
+    "otel",
+    "gen-ai",
+    "hermes-agent",
+    "mcp",
+    "multi-agent",
+    "monitoring",
+    "alerting",
+    "slack",
+    "pagerduty",
+    "sre",
+    "compliance",
+    "edge",
+    "cloudflare-workers",
+    "typescript"
+  ],
+  "homepage": "https://github.com/davccavalcante/behavioralai",
+  "bugs": {
+    "url": "https://github.com/davccavalcante/behavioralai/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/davccavalcante/behavioralai.git"
+  },
+  "license": "Apache-2.0",
+  "author": {
+    "name": "David C Cavalcante",
+    "email": "davcavalcante@proton.me",
+    "url": "https://takk.ag"
+  },
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    },
+    "./otel": {
+      "import": {
+        "types": "./dist/otel/index.d.ts",
+        "default": "./dist/otel/index.js"
+      },
+      "require": {
+        "types": "./dist/otel/index.d.cts",
+        "default": "./dist/otel/index.cjs"
+      }
+    },
+    "./channels": {
+      "import": {
+        "types": "./dist/channels/index.d.ts",
+        "default": "./dist/channels/index.js"
+      },
+      "require": {
+        "types": "./dist/channels/index.d.cts",
+        "default": "./dist/channels/index.cjs"
+      }
+    },
+    "./smtp": {
+      "import": {
+        "types": "./dist/smtp/index.d.ts",
+        "default": "./dist/smtp/index.js"
+      },
+      "require": {
+        "types": "./dist/smtp/index.d.cts",
+        "default": "./dist/smtp/index.cjs"
+      }
+    },
+    "./integrations": {
+      "import": {
+        "types": "./dist/integrations/index.d.ts",
+        "default": "./dist/integrations/index.js"
+      },
+      "require": {
+        "types": "./dist/integrations/index.d.cts",
+        "default": "./dist/integrations/index.cjs"
+      }
+    },
+    "./web": {
+      "import": {
+        "types": "./dist/web/index.d.ts",
+        "browser": "./dist/web/index.js",
+        "default": "./dist/web/index.js"
+      },
+      "require": {
+        "types": "./dist/web/index.d.cts",
+        "default": "./dist/web/index.cjs"
+      }
+    },
+    "./edge": {
+      "import": {
+        "types": "./dist/edge/index.d.ts",
+        "worker": "./dist/edge/index.js",
+        "default": "./dist/edge/index.js"
+      },
+      "require": {
+        "types": "./dist/edge/index.d.cts",
+        "default": "./dist/edge/index.cjs"
+      }
+    },
+    "./package.json": "./package.json"
+  },
+  "bin": {
+    "behavioralai": "./dist/cli/index.js"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE",
+    "NOTICE",
+    "CHANGELOG.md",
+    "SECURITY.md"
+  ],
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
+  "scripts": {
+    "build": "tsup",
+    "clean": "rm -rf dist coverage .tsbuildinfo",
+    "dev": "tsup --watch",
+    "typecheck": "tsc --noEmit",
+    "lint": "biome check src tests",
+    "lint:fix": "biome check --write src tests",
+    "format": "biome format --write src tests",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "publint": "publint",
+    "attw": "attw --pack --ignore-rules=no-resolution",
+    "size": "size-limit",
+    "prepack": "pnpm run build",
+    "verify": "pnpm run lint && pnpm run typecheck && pnpm run test && pnpm run build && pnpm run publint"
+  },
+  "peerDependencies": {
+    "@takk/keymesh": ">=1.0.0",
+    "@takk/modelchain": ">=1.0.0"
+  },
+  "peerDependenciesMeta": {
+    "@takk/keymesh": {
+      "optional": true
+    },
+    "@takk/modelchain": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@arethetypeswrong/cli": "^0.18.3",
+    "@biomejs/biome": "^2.4.16",
+    "@size-limit/preset-small-lib": "^12.1.0",
+    "@takk/keymesh": "^1.0.0",
+    "@takk/modelchain": "^1.0.0",
+    "@types/node": "^25.9.3",
+    "@vitest/coverage-v8": "^4.1.8",
+    "publint": "^0.3.21",
+    "size-limit": "^12.1.0",
+    "tsup": "^8.5.1",
+    "tsx": "^4.22.4",
+    "typescript": "^6.0.3",
+    "vitest": "^4.1.8"
+  },
+  "packageManager": "pnpm@10.34.1",
+  "sideEffects": false
+}

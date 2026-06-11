@@ -1,0 +1,106 @@
+[
+  {
+    "name": "@takk/behavioralai (ESM core)",
+    "path": "dist/index.js",
+    "limit": "16 kB",
+    "brotli": true,
+    "ignore": [
+      "node:fs/promises",
+      "node:path",
+      "node:net",
+      "node:tls",
+      "node:http"
+    ]
+  },
+  {
+    "name": "@takk/behavioralai (CJS core)",
+    "path": "dist/index.cjs",
+    "limit": "16 kB",
+    "brotli": true,
+    "ignore": [
+      "node:fs/promises",
+      "node:path",
+      "node:net",
+      "node:tls",
+      "node:http"
+    ]
+  },
+  {
+    "name": "@takk/behavioralai/otel",
+    "path": "dist/otel/index.js",
+    "limit": "6 kB",
+    "brotli": true,
+    "ignore": [
+      "node:fs/promises",
+      "node:path",
+      "node:net",
+      "node:tls",
+      "node:http"
+    ]
+  },
+  {
+    "name": "@takk/behavioralai/channels",
+    "path": "dist/channels/index.js",
+    "limit": "14 kB",
+    "brotli": true,
+    "ignore": [
+      "node:fs/promises",
+      "node:path",
+      "node:net",
+      "node:tls",
+      "node:http"
+    ]
+  },
+  {
+    "name": "@takk/behavioralai/smtp",
+    "path": "dist/smtp/index.js",
+    "limit": "8 kB",
+    "brotli": true,
+    "ignore": [
+      "node:fs/promises",
+      "node:path",
+      "node:net",
+      "node:tls",
+      "node:http"
+    ]
+  },
+  {
+    "name": "@takk/behavioralai/integrations",
+    "path": "dist/integrations/index.js",
+    "limit": "6 kB",
+    "brotli": true,
+    "ignore": [
+      "node:fs/promises",
+      "node:path",
+      "node:net",
+      "node:tls",
+      "node:http"
+    ]
+  },
+  {
+    "name": "@takk/behavioralai/web (ESM)",
+    "path": "dist/web/index.js",
+    "limit": "18 kB",
+    "brotli": true,
+    "ignore": [
+      "node:fs/promises",
+      "node:path",
+      "node:net",
+      "node:tls",
+      "node:http"
+    ]
+  },
+  {
+    "name": "@takk/behavioralai/edge (ESM)",
+    "path": "dist/edge/index.js",
+    "limit": "18 kB",
+    "brotli": true,
+    "ignore": [
+      "node:fs/promises",
+      "node:path",
+      "node:net",
+      "node:tls",
+      "node:http"
+    ]
+  }
+]

@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: "Read the spec first"
+    url: "https://github.com/davccavalcante/behavioralai/blob/main/SPEC.md"
+    about: "Behavioral AI: before opening an issue about behavior, read SPEC.md - the binding contract for the public surface, drift semantics, and SemVer policy."
+  - name: "Security vulnerability"
+    url: "mailto:davcavalcante@proton.me?subject=%5BSECURITY%5D%20"
+    about: "Do NOT open a public issue for security vulnerabilities. Email davcavalcante@proton.me with prefix [SECURITY]. We coordinate fix and disclosure privately."
+  - name: "General discussion / questions"
+    url: "https://github.com/davccavalcante/behavioralai/discussions"
+    about: "For design conversations, usage questions, or anything that is not a bug report or feature request, use GitHub Discussions."

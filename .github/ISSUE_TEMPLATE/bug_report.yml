@@ -1,0 +1,135 @@
+name: "Bug report"
+description: "Report a defect in @takk/behavioralai."
+title: "[bug] <one-line summary>"
+labels: ["bug", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for filing a bug. Please fill every section honestly - the maintainer reads every issue personally and complete context speeds up triage.
+
+        **Security vulnerabilities are NOT bugs filed here.** Follow [SECURITY.md](https://github.com/davccavalcante/behavioralai/blob/main/SECURITY.md): email <davcavalcante@proton.me> with prefix `[SECURITY]`.
+
+  - type: dropdown
+    id: entry
+    attributes:
+      label: "Entry point used"
+      description: "Which Behavioral AI entry point does the bug occur in?"
+      options:
+        - "core (@takk/behavioralai - createBehavioralAI, observe, fingerprints, drift)"
+        - "otel (@takk/behavioralai/otel - turnFromSpan / observeSpan)"
+        - "channels (@takk/behavioralai/channels - Slack, Discord, Teams, PagerDuty, ...)"
+        - "smtp (@takk/behavioralai/smtp - emailChannel)"
+        - "integrations (@takk/behavioralai/integrations - keymeshBridge / modelchainBridge)"
+        - "web (@takk/behavioralai/web)"
+        - "edge (@takk/behavioralai/edge)"
+        - "CLI (behavioralai inspect / simulate / serve)"
+        - "state backends (memoryState / fileState)"
+        - "telemetry / events"
+        - "types / .d.ts"
+        - "docs / README / SPEC"
+        - "CI / workflows"
+        - "not sure"
+    validations:
+      required: true
+
+  - type: input
+    id: version
+    attributes:
+      label: "Package version"
+      description: "Output of `npm view @takk/behavioralai version`, or the git SHA if testing local source."
+      placeholder: "1.0.0"
+    validations:
+      required: true
+
+  - type: textarea
+    id: repro
+    attributes:
+      label: "Reproduction steps"
+      description: "Minimal, deterministic steps. Include shell commands, code snippets, env variables. Recreate the bug from a clean clone. For drift detection bugs, `behavioralai simulate --turns N --seed S` reproductions are ideal because they are fully deterministic."
+      placeholder: |
+        1. `pnpm add @takk/behavioralai`
+        2. Code snippet:
+           ```ts
+           import { createBehavioralAI } from '@takk/behavioralai';
+           const engine = createBehavioralAI({ sensitivity: 'balanced' });
+           engine.observe({ agentId: 'support-bot', latencyMs: 1200 });
+           // ...
+           ```
+        3. Observe...
+      render: bash
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: "Expected behavior"
+      description: "What did you expect to happen? Cite SPEC.md or README if relevant (e.g. baseline ready after warmup, drift confirmed after 2 evaluations, recovery after 5 in-range evaluations)."
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: "Actual behavior"
+      description: "What happened instead? Paste full stack traces, error messages, telemetry events (e.g. drift.detected, alert.failed) if relevant."
+    validations:
+      required: true
+
+  - type: textarea
+    id: console
+    attributes:
+      label: "Terminal output"
+      description: "Paste relevant stderr/stdout here (it will be rendered as a code block). Strip tokens and webhook URLs before pasting."
+      render: console
+    validations:
+      required: false
+
+  - type: dropdown
+    id: runtime
+    attributes:
+      label: "Runtime"
+      description: "Where does the bug reproduce? Behavioral AI requires Node >= 20; CI runs Node 20, 22, and 24."
+      options:
+        - "Node 20"
+        - "Node 22"
+        - "Node 24"
+        - "Bun"
+        - "Deno"
+        - "Cloudflare Workers / edge runtime"
+        - "Browser"
+        - "Other (describe in Additional context)"
+    validations:
+      required: true
+
+  - type: input
+    id: os
+    attributes:
+      label: "Operating system"
+      description: "e.g. macOS 26 (Apple Silicon), Ubuntu 24.04, Debian 12, Windows 11. Some bugs are platform-specific."
+      placeholder: "macOS 26 (Apple Silicon)"
+    validations:
+      required: true
+
+  - type: textarea
+    id: extra
+    attributes:
+      label: "Additional context"
+      description: "Anything else the maintainer should know - related issues, conjectured root cause, sensitivity preset in use, window size, links to upstream issues, etc."
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: "Pre-submission checklist"
+      options:
+        - label: "I read [SPEC.md](https://github.com/davccavalcante/behavioralai/blob/main/SPEC.md) and confirmed this is not documented behavior."
+          required: true
+        - label: "I searched existing issues and PRs for duplicates."
+          required: true
+        - label: "This is NOT a security vulnerability (those go to email per [CONTRIBUTING §7](https://github.com/davccavalcante/behavioralai/blob/main/.github/CONTRIBUTING.md) and [SECURITY.md](https://github.com/davccavalcante/behavioralai/blob/main/SECURITY.md))."
+          required: true
+        - label: "I removed all credentials, tokens, and webhook URLs from the report."
+          required: true
